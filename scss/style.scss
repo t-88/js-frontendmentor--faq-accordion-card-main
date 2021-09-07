@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+@import "./shared.scss";
+html {
+    min-width: $min-width * 1px;
+    min-height: 665px;
+    background: linear-gradient(hsl(273, 75%, 66%),hsl(240, 73%, 65%));
+}
+html, body{ 
+    width: 100%;
+    height: 100%;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+.container {
+    background: white;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    
+    position: relative;
+    box-shadow: rgb(0 0 0 / 28%) 0 50px 40px -20px;
+
+    gap: mathFromPcToTablet(0,30);
+    width: mathFromPcToTablet(1300,550);
+    height: mathFromPcToTablet(600,400);
+
+    .phone {display: none;}
+    @mixin container-shared {
+        .desktop { display: none; }
+        .phone {display: block;}
+        flex-direction: column;
+    }
+    @include media("<=tablet",">phone") {
+        @include container-shared;
+        width: mathFromTabletToPhone(450,290);
+        height: mathFromTabletToPhone(580,425);
+        padding-top: mathFromTabletToPhone(150,90);
+
+    }
+    @include media("<=phone") {
+        @include container-shared;
+        width: 290px;
+        height: 425px;
+        padding-top: 90px; 
+    }
+    .img-container {
+        overflow: hidden;
+        flex: 1;
+
+        @mixin img-container-shared {
+            position: absolute;
+            top: -125px;
+        }
+        @include media("<=tablet",">phone") {
+            @include img-container-shared;
+            height: mathFromTabletToPhone(270,200);
+        }
+        @include media("<=phone") {
+            @include img-container-shared;
+            height: 200px;
+        } 
+
+        .woman {
+            transform: translateX(mathFromPcToTablet(-100,-45));
+            width: mathFromPcToTablet(600,305);
+            @include media("<=tablet",">phone") {
+                transform: translate(mathFromTabletToPhone(0,-15),mathFromTabletToPhone(0,15));
+                width: mathFromTabletToPhone(330,270);      
+            }
+            @include media("<=phone") {
+                transform: translate(-15px,15px);
+                width: 270px;      
+            }
+        }
+        .bg-woman {
+            transform: translate(mathFromTabletToPhone(30,10),mathFromTabletToPhone(-110,-90));
+            width: mathFromTabletToPhone(300,250);
+            @include media("<=phone") {
+                transform: translate(10,-90);
+                width: 250px;            
+            }
+        }
+    }
+    .box {
+        position: absolute;
+        top: mathFromPcToTablet(280,170);
+        left: mathFromPcToTablet(-95,-42);
+        width: mathFromPcToTablet(191,90);
+    }
+
+    .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;     
+        gap: mathFromPcToTablet(40,20);
+        
+        @include media("<=tablet") {
+            gap: 30px;
+            align-items: center;
+        }
+       
+        .title {
+            width: fit-content;
+            font-size: mathFromPcToTablet(32,22);
+            color: hsl(238, 29%, 16%);
+
+            @include media("<=tablet",">phone") {
+                font-size: mathFromTabletToPhone(32,24);
+            }
+            @include media("<=phone") { 
+                font-size:24px;
+            }
+
+        }
+    }
+    .questions {
+        display: flex;
+        flex-direction: column;
+        width: mathFromPcToTablet(450,250);
+        gap: mathFromPcToTablet(20,10);
+        font-size: mathFromPcToTablet(16,11);
+
+        @include media("<=tablet",">phone") {
+            width: mathFromTabletToPhone(380,260);
+            font-size: mathFromTabletToPhone(16,12);
+        }
+        @include media("<=phone") { 
+            width: 260px;
+            font-size: 12px;
+        }
+        .question {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            border-bottom: solid hsl(240%, 5%, 91%) 1px;
+
+            gap: mathFromPcToTablet(15,10);
+            padding: 0 mathFromPcToTablet(20,10) mathFromPcToTablet(20,10) 0;
+
+            @include media("<=tablet",">phone") {
+                padding: mathFromTabletToPhone(5,5) 
+                         mathFromTabletToPhone(15,15)
+                         mathFromTabletToPhone(15,15)
+                         0;
+            }
+            @include media("<=phone") { 
+                padding: 5px 15px 15px 0;
+            }
+            &:hover {
+                .q-text {
+                    color: hsl(14%, 88%, 65%);
+                }
+            }
+            .q-text {
+                color: hsl(237, 12%, 33%);
+                img { 
+                    float: right;    
+                    width: mathFromPcToTablet(12,10);
+                    padding-top: mathFromPcToTablet(10,5);
+                }
+            }
+            .q-answer {
+                display: none;
+                color: hsl(240%, 6%, 50);
+            }
+            &.selected {
+                .q-text {
+                    color: black;
+                    font-weight: 700;
+
+                    img {
+                        transform: rotate(180deg);
+                    }
+                }
+                .q-answer {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+}
