@@ -92,9 +92,16 @@ body {
             }
         }
     }
+    @keyframes box-to-up {
+        0% { top: mathFromPcToTablet(280,192) }
+        50% { top: mathFromPcToTablet(250,182); }
+        100% { top: mathFromPcToTablet(280,192) }
+    }
     .box {
+        animation-name: box-to-up;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
         position: absolute;
-        top: mathFromPcToTablet(280,170);
         left: mathFromPcToTablet(-95,-42);
         width: mathFromPcToTablet(191,90);
     }

@@ -112,9 +112,22 @@ body {
     width: 250px;
   }
 }
+@keyframes box-to-up {
+  0% {
+    top: calc( 192 * 1px + 88 * ((100vw - 600px)) / 1223);
+  }
+  50% {
+    top: calc( 182 * 1px + 68 * ((100vw - 600px)) / 1223);
+  }
+  100% {
+    top: calc( 192 * 1px + 88 * ((100vw - 600px)) / 1223);
+  }
+}
 .container .box {
+  animation-name: box-to-up;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
   position: absolute;
-  top: calc( 170 * 1px + 110 * ((100vw - 600px)) / 1223);
   left: calc( -42 * 1px + -53 * ((100vw - 600px)) / 1223);
   width: calc( 90 * 1px + 101 * ((100vw - 600px)) / 1223);
 }
